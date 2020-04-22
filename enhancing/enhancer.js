@@ -6,7 +6,11 @@ module.exports = {
 };
 
 function succeed(item) {
-  return { ...item, enhancement: item.enhancement + 1 };
+  let level = item.enhancement;
+  if (level < 20) {
+    level += 1;
+  }
+  return { ...item, enhancement: level };
 }
 
 function fail(item) {

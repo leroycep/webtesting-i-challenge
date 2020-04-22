@@ -18,18 +18,40 @@ describe("enhancer", () => {
 
   describe("succeed", () => {
     it("should increase enchancement by one", () => {
-        const item = {
-            name: "Diamond Pick",
-            durability: 50,
-            enhancement: 1,
-        };
+      const item = {
+        name: "Diamond Pick",
+        durability: 50,
+        enhancement: 1,
+      };
 
-        const enhanced = enhancer.succeed(item);
+      const enhanced = enhancer.succeed(item);
 
-        expect(enhanced.enhancement).toBe(2);
+      expect(enhanced.enhancement).toBe(2);
     });
-    it.todo("should max out at level 20");
-    it.todo("should not affect durability");
+
+    it("should max out at level 20", () => {
+      const item = {
+        name: "Diamond Pick",
+        durability: 50,
+        enhancement: 20,
+      };
+
+      const enhanced = enhancer.succeed(item);
+
+      expect(enhanced.enhancement).toBe(20);
+    });
+
+    it("should not affect durability", () => {
+      const item = {
+        name: "Diamond Pick",
+        durability: 50,
+        enhancement: 20,
+      };
+
+      const enhanced = enhancer.succeed(item);
+
+      expect(enhanced.durability).toBe(item.durability);
+    });
   });
 
   describe("fail", () => {
