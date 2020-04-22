@@ -91,4 +91,30 @@ describe("enhancer", () => {
       expect(enhanced.enhancement).toBe(item.enhancement - 1);
     });
   });
+
+  describe("get", () => {
+    it("should not change name for level 0 items", () => {
+      const item = {
+        name: "Diamond Pick",
+        durability: 50,
+        enhancement: 0,
+      };
+
+      const renamed = enhancer.get(item);
+
+      expect(renamed.name).toBe(item.name);
+    });
+
+    it("should append level to name above level 0", () => {
+      const item = {
+        name: "Diamond Pick",
+        durability: 50,
+        enhancement: 17,
+      };
+
+      const renamed = enhancer.get(item);
+
+      expect(renamed.name).toMatch("[+17] Diamond Pick");
+    });
+  });
 });
