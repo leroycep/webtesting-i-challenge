@@ -15,11 +15,23 @@ describe("enhancer", () => {
       expect(repaired.durability).toBe(100);
     });
   });
-  describe("success", () => {
-    it.todo("should increase enchancement by one");
+
+  describe("succeed", () => {
+    it("should increase enchancement by one", () => {
+        const item = {
+            name: "Diamond Pick",
+            durability: 50,
+            enhancement: 1,
+        };
+
+        const enhanced = enhancer.succeed(item);
+
+        expect(enhanced.enhancement).toBe(2);
+    });
     it.todo("should max out at level 20");
     it.todo("should not affect durability");
   });
+
   describe("fail", () => {
     it.todo(
       "should decrease durability by 5 for items less than enhancement 15"
