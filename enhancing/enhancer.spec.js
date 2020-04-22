@@ -55,14 +55,40 @@ describe("enhancer", () => {
   });
 
   describe("fail", () => {
-    it.todo(
-      "should decrease durability by 5 for items less than enhancement 15"
-    );
-    it.todo(
-      "should decrease durability by 10 for items enhancement 15 or more"
-    );
-    it.todo(
-      "should decrease enhancement by 1 for items enhancement 16 or more"
-    );
+    it("should decrease durability by 5 for items less than enhancement 15", () => {
+      const item = {
+        name: "Diamond Pick",
+        durability: 50,
+        enhancement: 10,
+      };
+
+      const enhanced = enhancer.fail(item);
+
+      expect(enhanced.durability).toBe(item.durability - 5);
+    });
+
+    it("should decrease durability by 10 for items enhancement 15 or more", () => {
+      const item = {
+        name: "Diamond Pick",
+        durability: 50,
+        enhancement: 17,
+      };
+
+      const enhanced = enhancer.fail(item);
+
+      expect(enhanced.durability).toBe(item.durability - 10);
+    });
+
+    it("should decrease enhancement by 1 for items enhancement 16 or more", () => {
+      const item = {
+        name: "Diamond Pick",
+        durability: 50,
+        enhancement: 17,
+      };
+
+      const enhanced = enhancer.fail(item);
+
+      expect(enhanced.enhancement).toBe(item.enhancement - 1);
+    });
   });
 });
